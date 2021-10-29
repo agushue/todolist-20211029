@@ -1,5 +1,17 @@
 const Sequelize = require("sequelize")
-const sequelize = new Sequelize("postgres://gzznihge:zlu7NCfEmC8I2QbS5ICTTSXnbe0HDAPK@fanny.db.elephantsql.com/gzznihge")
+const url = process.env.DATABASE_URL || "postgres://gzznihge:zlu7NCfEmC8I2QbS5ICTTSXnbe0HDAPK@fanny.db.elephantsql.com/gzznihge"
+const sequelize = new Sequelize(url, {
+  dialect: 'postgres', 
+  ssl: true, 
+  protocol: 'postgres',
+
+  dialectOptions: {
+    ssl:{
+      require: true, 
+      rejectUnauthorized: false
+    }
+  }
+})
 
 let Task = sequelize.define("tasks", {
   name: Sequelize.STRING,

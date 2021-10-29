@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
-const PORT = 3000
+//console.log(process)
+const PORT = process.env.PORT || 3000
 const router = require("./routes/taskRoutes.js")
 const cors = require("cors");
 // boilerplate - allow us to access req.body for post and update
